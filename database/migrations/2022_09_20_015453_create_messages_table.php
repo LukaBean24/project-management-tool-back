@@ -14,9 +14,8 @@ return new class extends Migration {
 	{
 		Schema::create('messages', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('from_id')->references('id')->on('users')->cascadeOnDelete();
+			$table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
 			$table->foreignId('chat_id')->references('id')->on('chats')->cascadeOnDelete();
-			$table->foreignId('to_id')->references('id')->on('users')->cascadeOnDelete();
 			$table->text('body');
 			$table->text('attachement')->nullable();
 			$table->timestamps();

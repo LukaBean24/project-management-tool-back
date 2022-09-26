@@ -35,7 +35,7 @@ class AuthController extends Controller
 		return $this->respondWithToken($token);
 	}
 
-	public function me(): JsonResponse
+	public function user(): JsonResponse
 	{
 		return response()->json(auth()->user());
 	}

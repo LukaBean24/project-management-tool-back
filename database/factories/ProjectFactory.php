@@ -29,8 +29,8 @@ class ProjectFactory extends Factory
 			'description'      => $this->faker->text(),
 			'stage'            => $stages[array_rand($stages)],
 			'priority'         => $priority[array_rand($priority)],
-			'start_date'       => date_format(Carbon::now()->subDays($days[array_rand($days)]), 'd-m-Y'),
-			'finish_date'      => date_format(Carbon::now()->addDays($days[array_rand($days)]), 'd-m-Y'),
+			'start_date'       => date_format(Carbon::now()->subDays($days[array_rand($days)]), 'Y-m-d'),
+			'finish_date'      => date_format(Carbon::now()->addDays($days[array_rand($days)]), 'Y-m-d'),
 		];
 	}
 }

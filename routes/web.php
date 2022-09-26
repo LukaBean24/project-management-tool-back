@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 	return view('verify-email');
+});
+
+Route::get('/test', function () {
+	return DB::select('select role from user_workspace where user_id = ? AND workspace_id = ?', [1, 1]);
 });

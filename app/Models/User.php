@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -48,6 +49,17 @@ class User extends Authenticatable implements JWTSubject
 		return $this->belongsToMany(Chat::class);
 	}
 
+	// public function chatsWithPair()
+	// {
+	// 	$users = [];
+	// 	foreach ($this->chats as $chat)
+	// 	{
+	// 		$users[] = Chat::find($chat['id'])->users;
+	// 	}
+
+	// 	return $this->chats;
+	// }
+
 	public function notifications()
 	{
 		return $this->hasMany(Notification::class, 'to_id');
@@ -56,5 +68,10 @@ class User extends Authenticatable implements JWTSubject
 	public function events()
 	{
 		return $this->belongsToMany(Event::class);
+	}
+
+	public function upcomingEvents()
+	{
+		return $this->events()->whereBetween('start_date', [Carbon::now(), Carbon::now()->addDays(3)]);
 	}
 }

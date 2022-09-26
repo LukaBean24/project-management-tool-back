@@ -19,8 +19,8 @@ return new class extends Migration {
 			$table->text('description');
 			$table->string('stage');
 			$table->string('priority');
-			$table->string('start_date');
-			$table->string('finish_date');
+			$table->date('start_date');
+			$table->date('finish_date');
 			$table->timestamps();
 		});
 	}

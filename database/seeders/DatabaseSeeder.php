@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Chat;
 use App\Models\Event;
+use App\Models\Message;
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\Team;
@@ -27,6 +29,7 @@ class DatabaseSeeder extends Seeder
 			'email'             => 'lkochlo24@gmail.com',
 			'password'          => bcrypt('luka2001'),
 			'email_verified_at' => now(),
+			'profile_picture'   => 'https://i.pinimg.com/originals/35/b5/49/35b549a74bd709c3cb3e8e499442e90a.jpg',
 		]);
 		User::create([
 			'name'              => 'Giorgi',
@@ -34,6 +37,7 @@ class DatabaseSeeder extends Seeder
 			'email'             => 'giorgi@gmail.com',
 			'password'          => bcrypt('luka2001'),
 			'email_verified_at' => now(),
+			'profile_picture'   => 'https://tennisbuzz.net/.image/t_share/MTkxODQyNDExOTMwOTg1OTcw/roger-federer-at-wimbledon-2021.jpg',
 		]);
 		User::create([
 			'name'              => 'Dachi',
@@ -41,6 +45,7 @@ class DatabaseSeeder extends Seeder
 			'email'             => 'dachi@gmail.com',
 			'password'          => bcrypt('luka2001'),
 			'email_verified_at' => now(),
+			'profile_picture'   => 'https://media.gettyimages.com/photos/kawhi-leonard-of-the-clippers-of-the-clippers-dribbles-the-ball-the-picture-id1272714063?s=594x594',
 		]);
 		User::create([
 			'name'              => 'Levani',
@@ -48,6 +53,7 @@ class DatabaseSeeder extends Seeder
 			'email'             => 'bojgua@gmail.com',
 			'password'          => bcrypt('luka2001'),
 			'email_verified_at' => now(),
+			'profile_picture'   => 'https://m.media-amazon.com/images/I/41QKA2SQ8LL._AC_SY580_.jpg',
 		]);
 
 		User::factory(10)->create();
@@ -111,5 +117,35 @@ class DatabaseSeeder extends Seeder
 		{
 			Event::find(5)->members()->attach($member['id']);
 		}
+
+		Chat::factory(5)->create();
+		Chat::find(1)->users()->attach([1, 2], ['created_at' => now(), 'updated_at' => now()]);
+		Chat::find(2)->users()->attach([1, 3], ['created_at' => now(), 'updated_at' => now()]);
+		Chat::find(3)->users()->attach([1, 4], ['created_at' => now(), 'updated_at' => now()]);
+
+		Message::factory(5)->create([
+			'user_id'    => 1,
+			'chat_id'    => 1,
+		]);
+		Message::factory(5)->create([
+			'user_id'    => 2,
+			'chat_id'    => 1,
+		]);
+		Message::factory(5)->create([
+			'user_id'    => 1,
+			'chat_id'    => 2,
+		]);
+		Message::factory(5)->create([
+			'user_id'    => 3,
+			'chat_id'    => 2,
+		]);
+		Message::factory(5)->create([
+			'user_id'    => 1,
+			'chat_id'    => 3,
+		]);
+		Message::factory(5)->create([
+			'user_id'    => 4,
+			'chat_id'    => 3,
+		]);
 	}
 }

@@ -9,8 +9,13 @@ class Chat extends Model
 {
 	use HasFactory;
 
+	public function users()
+	{
+		return $this->belongsToMany(User::class);
+	}
+
 	public function messages()
 	{
-		return $this->belongsToMany(Message::class);
+		return $this->hasMany(Message::class);
 	}
 }

@@ -26,7 +26,7 @@ class Workspace extends Model
 
 	public function teams()
 	{
-		return $this->hasMany(Project::class);
+		return $this->hasMany(Team::class);
 	}
 
 	public function events()
